@@ -4,16 +4,13 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=LolZ Kernel by johnmart19 @ Telegram
+kernel.string=Redline Kernel for Olive by Johnmart19
 do.devicecheck=1
 do.modules=1
+do.systemless=0
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=olive
-device.name2=
-device.name3=
-device.name4=
-device.name5=
 supported.versions=
 supported.patchlevels=
 '; } # end properties
@@ -28,20 +25,28 @@ ramdisk_compression=auto;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
+set_con() {
+  chcon -h u:object_r:"$1":s0 $2
+  chcon u:object_r:"$1":s0 $2
+}
 
-## AnyKernel file attributes
-# set permissions/ownership for included ramdisk files
-set_perm_recursive 0 0 755 644 $ramdisk/*;
-set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
-
-
-## AnyKernel install
+# AnyKernel install
 dump_boot;
 
-# begin ramdisk changes
-
-# end ramdisk changes
+ui_print "Adding Redline kernel Boot Script..."
+umount /vendor || true
+mount -o rw /dev/block/bootdevice/by-name/vendor /vendor
+cp -fr /tmp/anykernel/ramdisk/init.qcom.test.rc /vendor/etc/init/hw/init.qcom.test.rc
+chmod 644 /vendor/etc/init/hw/init.qcom.test.rc
+chown root.root /vendor/etc/init/hw/init.qcom.test.rc
+set_con vendor_configs_file /vendor/etc/init/hw/init.qcom.test.rc
+ui_print "Redline Kernel Boot Script Added!!..."
+ui_print "Cleaning /vendor/lib/modules..."
+rm -rf /vendor/lib/modules/audio_*
+rm -rf /vendor/lib/modules/exfat.ko
+ui_print "Cleaned Successfully!!"
 
 write_boot;
 ## end install
+
 
