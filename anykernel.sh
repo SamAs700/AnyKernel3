@@ -10,12 +10,12 @@ do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=ginkgo
-device.name2=willow
+device.name1=onc
+device.name2=onclite
 device.name3=
 device.name4=
 device.name5=
-supported.versions=10.0-11.0
+supported.versions=9.0-11.0
 supported.patchlevels=
 '; } # end properties
 
