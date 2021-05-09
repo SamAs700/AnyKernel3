@@ -1,4 +1,4 @@
-NAME ?= Cartel-Kernel
+NAME ?= Zeus-ThunderBolt-Kernel
 
 DATE := $(shell date "+%Y%m%d-%H%M")
 
