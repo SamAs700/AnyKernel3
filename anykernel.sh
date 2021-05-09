@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Zeus kernel by Ragy365 and johnmart19
+kernel.string=Zeus Zeus ThunderBolt kernel by SamAs700, Ragy365 and johnmart19
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -15,7 +15,7 @@ device.name2=onclite
 device.name3=
 device.name4=
 device.name5=
-supported.versions=9.0-11.0
+supported.versions=10.0-11.0
 supported.patchlevels=
 '; } # end properties
 
